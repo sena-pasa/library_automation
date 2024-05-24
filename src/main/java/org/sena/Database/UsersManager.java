@@ -10,7 +10,8 @@ public class UsersManager {
     private static final String SEPERATOR = ",";
     public void insert(String name, String surname, String userName, String password) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(getUsersFilePath(), true))) {
-            writer.write(name + SEPERATOR + surname + SEPERATOR + userName + SEPERATOR + password);
+            User user = new User(name, surname, userName, password);
+            writer.write(user.toString());
             writer.newLine();
             writer.flush();
         } catch (IOException e) {
